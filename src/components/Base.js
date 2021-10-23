@@ -65,9 +65,6 @@ const Base = ({ addBase, pizza }) => {
         })}
       </ul>
 
-      {/* if varients are named the smae names as the varients of the parent div you don't have to define them in the child */}
-      {/* example: "base container" div have varients hidden and visable & "next" div has the same names visable & hidden */}
-      {/* then: <motion.div varients={nextVarients} no need for: inital and animate props></motion.div> */}
       {pizza.base && (
         <motion.div
           className="next"
