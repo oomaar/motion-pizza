@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
+import React from 'react';
+import { motion } from 'framer-motion';
 
 const containerVarients = {
   hidden: {
@@ -16,6 +16,10 @@ const containerVarients = {
       when: "beforeChildren",
       staggerChildren: 0.4
     }
+  },
+  exit: {
+    x: '-100vw',
+    transition: { ease: 'easeInOut' }
   }
 };
 
@@ -29,28 +33,15 @@ const childVarient = {
 };
 
 const Order = ({ pizza }) => {
-  const [showTitle, setShowTitle] = useState(true);
-
-  setTimeout(() => {
-    setShowTitle(false)
-  }, 4000);
-
   return (
     <motion.div
       className="container order"
       variants={containerVarients}
       initial="hidden"
       animate="visable"
+      exit="exit"
     >
-      <AnimatePresence>
-        {showTitle && (
-          <motion.h2
-            exit={{ y: -1000 }}
-          >
-            Thank you for your order :)
-          </motion.h2>
-        )}
-      </AnimatePresence>
+      <h2>Thank you for your order :)</h2>
       <motion.p variants={childVarient}>You ordered a {pizza.base} pizza with:</motion.p>
       <motion.div variants={childVarient}>
         {pizza.toppings.map(topping => <div key={topping}>{topping}</div>)}
